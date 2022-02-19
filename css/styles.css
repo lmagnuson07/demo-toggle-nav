@@ -2,3 +2,98 @@ body {
     background-color: #192f5e;
     font-family: sans-serif;
 }
+
+/* ******************* header & nav ******************* */
+/* Step 1. Style the nav for when it shows, starting with the mobile view, and then hide it */
+header {
+    background-color: #fff;
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.toggle-btn {
+    border: none;
+    background-color: #fff;
+}
+
+.toggle-btn:hover {
+    cursor: pointer;
+}
+
+nav {
+    flex: 1 1 100%;
+}
+
+.menu a {
+    color: #3f3f3f;
+    text-decoration: none;
+    /* Allows the clickable area to take up the full width and height of the li */
+    display: block;
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: .25rem;
+}
+
+.menu li {
+    line-height: 2.5rem;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+/* Step 2. Hide the nave for the default screen. This can be done using display: none but display: none will not take a transition property */
+header nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+/* Step 3. Create a special class that will show the nav. This class only exists in the CSS for now, do not add to the HTML markup. The JS file will add this class to the html for us when the button is clicked */
+.show-nav {
+    max-height: 460px;
+}
+
+/* ************************* section ********************* */
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+}
+
+section h2 {
+    color: #fff;
+    font-size: 3.175rem;
+}
+
+/* Step 4. Add a media query where the nav will show by default. Hide the button, and layout the nav as a horizontal nav for the wider screen */
+/* Show the nav links as soon as there is room on the viewport to do so, play with the min-width value to find the ideal viewport width */
+@media screen and (min-width: 625px) {
+    .toggle-btn {
+        display: none;
+    }
+    /* we want to see the nave by default, so give it its height back */
+    header nav {
+        max-height: initial;
+        overflow: visible;
+        /* Flex shorthand takes 3 values, grow, shrink, basis */
+        flex: 0 0 auto;
+    }
+
+    ul.menu {
+        display: flex;
+        gap: 1rem;
+    }
+
+    ul.menu a {
+        padding: 0 0.75rem;
+    }
+    /* style the menu links horizontally  */
+}
